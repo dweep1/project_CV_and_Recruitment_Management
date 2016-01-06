@@ -3,8 +3,17 @@
 <head>
 <meta charset="utf-8">
 <title>Create Recruitment Session</title>
-
+<?php 
+		require_once("Sql.php");
+		require_once("GlobalVariables.php");
+		$s = new Sql();
+		$connect = $s->connectToDatabase($databaseName);
+		
+		$results = mysqli_query($connect,"SELECT * FROM jobpositon");
+		
+?>	
 <link href="css/style.css" rel="stylesheet" type="text/css">
+<script src="js/jquery.min.js"></script>
 <style type="text/css">
 	.asideLeftIcons {
 		margin-left: 9%;
@@ -97,17 +106,27 @@
 	}
 </style>	
 
+<script>
+jQuery(function(){
+    $('#new-job').click(function(){
+		$( "#jbposition" ).replaceWith( '<input name="newJob" type="text" required class="FormTextInput" placeholder="Enter New Job Position"/>' );
+		document.getElementById("new-job").remove();
+	});
+});
+</script>
+
 </head>
 
 <body>
 <div>
   <header>
     <aside class="asideRight">
-		<input type="search" class="searchbox"><img src="images/searchIcon.png" width="15" height="15" alt=""/>
-      
-		<a href="index.php" class="navHome"> Home</a>
-		<a href="help.php" class="navHelp">Help </a></aside>
-    
+      <form action="SearchInterface.php" method="get">
+        <input name="Search" type="search" class="searchbox" ><img src="images/searchIcon.png" width="15" height="15" alt=""/>
+        <a href="index.php" class="navHome"> Home</a>
+        <a href="help.php" class="navHelp">Help </a>
+      </form>
+    </aside>
     <aside class="asideLeft"></aside> 
   </header>
   
@@ -122,12 +141,13 @@
     <input id="sessionID" name="sessionName" type="text" required class="FormTextInput" placeholder="Session Name"/><br/>
     <select id="jbposition" name = "selectPost" class="formSelect" required placeholder="Select Job Position">
 		<option value="" selected disabled>Select Job Position</option>
-		<option value="jp001"> Software Engineer</option>
-        <option value="jp002"> Software Architect</option>
-        <option value="jp003"> Business Analysist</option>
-        <option value="jp004"> Marketing Assistant </option></select><br/>
-   <!-- <input name="addPost" type="text" class="FormTextInput" placeholder="Add New Job Position"/> --><br/>
-	
+		<?php while($row = $results->fetch_row()){?>
+		<option value=<?php echo $row[0];?>><?php echo $row[1];?></option>
+		<?php } ?>
+        </select><br/>
+	&nbsp;&nbsp;&nbsp;	
+	<a href="#" id="new-job">+ Add new job position</a>
+	<br>
     <input id="btnID" type="submit" value="Create" href="uploadCVs.php"/>
     <input type="reset" value="Cancel"/>
     

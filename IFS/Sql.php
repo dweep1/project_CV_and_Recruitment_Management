@@ -106,11 +106,13 @@ class Sql{
 			}
 		}		
 	}
-	/*Function to ceck whether the candidate needs to flag for threshold perion*/
+	/*Function to ceck whether the candidate needs to flag for threshold period*/
 	public Function needToFlag($newCV,$newCandidate,$connect,$sessionID){
 				
-				
-				$queryEmail =mysqli_query($connect,"SELECT cv.cvID FROM cv JOIN candidate ON cv.cvID=candidate.cvID WHERE ((submittedDate > NOW() - INTERVAL 365 day) AND email='".$newCandidate->getEmail()."' OR DateOfBirth='".$newCandidate->getDateOfBirth()."');");	
+				$row=$this->selectRecords($connect,'config');
+				$thresholdPeriod=$row[1];
+				$thresholdDays=$thresholdPeriod*365;
+				$queryEmail =mysqli_query($connect,"SELECT cv.cvID FROM cv JOIN candidate ON cv.cvID=candidate.cvID WHERE ((submittedDate > NOW() - INTERVAL ".$thresholdDays." day) AND email='".$newCandidate->getEmail()."' OR DateOfBirth='".$newCandidate->getDateOfBirth()."');");	
 				//'".$newCandidate->getEmail()."'"
 				 $haveBefore=$queryEmail->fetch_row();
 				//$queryDOB = mysqli_query($connect,"SELECT `CandID` FROM `candidate` WHERE DateOfBirth='".$newCandidate->getDateOfBirth()."'");
@@ -126,7 +128,7 @@ class Sql{
 				$submittedCV = $newCV->getSubmittedCVPath();
 				$submittedDate = $newCV->getSubmittedDate(); 
 									
-				//echo "<p>\n$cvID , $submittedCV , $submittedDate</p>";
+				
 				$queryToInsertToCV = mysqli_query($connect,"INSERT INTO cv VALUES('$cvID', '$submittedCV', '$submittedDate','$sessionID')");
 			}		
 				
@@ -145,7 +147,6 @@ class Sql{
 					
 	}
 	
-	
 	/* recruitment Session */
 	
 	public function setSessionQuery($connect,$name,$dateCreated,$jb){
@@ -161,12 +162,35 @@ class Sql{
 		$data = mysqli_query($connect, 'SELECT * FROM '.$tableName.'');
 		return $data;
 	}
+	//Function to get all records of a table	
+	public function selectRecords($connect,$tableName){
+		$query = mysqli_query($connect, 'SELECT * FROM '.$tableName.'');
+		$row=$query->fetch_row();
+		return $row;
+	}
 	
-public function changeSessionStatus($RSID,$sessionStatusID){
+		
+	public function changeSessionStatus($RSID,$sessionStatusID){
 		global $databaseName;
 		$connect = $this->connectToDatabase($databaseName);
 		$data = mysqli_query($connect,"UPDATE recruitmentsession SET sessionStatusID='$sessionStatusID' WHERE RSID='$RSID'");
 	}	
+	/* threshold period */
+	
+	public function insertToConfig($connect,$value){
+		$queryToInsertToConfig = mysqli_query($connect,"UPDATE `config` SET `years`=".$value." WHERE 1;");
+	
+}
+	public function createJobPosition($connect,$jobName){
+		$jbID=$this->increaseID($connect,"jobpositon","jbID","jp001");
+		$queryToInsertJobPosition = mysqli_query($connect,"INSERT INTO jobpositon(jbID,jbName) VALUES ('$jbID','$jobName')");
+		return $jbID;
+	}
+	
+	
+		
+	
+	
 	
 }
 ?>   

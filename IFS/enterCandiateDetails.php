@@ -1,9 +1,15 @@
+<?php
+    include('phpSessions.php');
+    ?>
+
 <!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
 <title>Session Details</title>
-
+<script src="sweetalert/sweetalert-master/dist/sweetalert.min.js"></script>
+<script src="sweetalert/sweetalert-master/dist/sweetalert-dev.js"></script>
+<link rel="stylesheet" href="sweetalert/sweetalert-master/dist/sweetalert.css" />
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <style type="text/css">
 	.asideLeftIcons {
@@ -150,6 +156,25 @@
 		background-image: url(images/recruitmentSession/cancel1.png);
 	}
 </style>
+<?php 
+$valid="";
+if(isset($_GET["valid"])){
+	$valid=$_GET["valid"];
+}
+
+$error="";
+if(isset($_GET["msg"])){
+	$error=$_GET["msg"];
+}
+?>
+<script>
+var v=<?php echo $valid?>;
+var m="<?php echo $error?>";
+if(v=="1"){
+	alert(m);
+	//swal('Congratulations!', 'Your message has been succesfully sent', 'success');
+}
+</script>
 
 <?php 
 	require_once("Sql.php");
@@ -202,18 +227,27 @@
     
 ?>
 
+
+
 </head>
 
 <body>
 <div>
   <header>
     <aside class="asideRight">
-		<input type="search" class="searchbox"><img src="images/searchIcon.png" width="15" height="15" alt=""/>
-      
-		<a href="index.php" class="navHome"> Home</a>
-		<a href="help.php" class="navHelp">Help </a></aside>
-    
-    <aside class="asideLeft"></aside> 
+        <span>
+            <b id="welcome">Welcome : <i><?php echo $login_session; ?>&nbsp;&nbsp;&nbsp;</i></b>
+            <b id="logout"><a href="logout.php">Log Out</a></b>
+        </span>
+
+      <form action="SearchInterface.php" method="get">
+        <input name="Search" type="search" class="searchbox" ><img src="images/searchIcon.png" width="15" height="15" alt=""/>
+        <a href="index.php" class="navHome"> Home</a>
+        <a href="help.php" class="navHelp">Help </a>
+      </form>
+
+    </aside>
+    <aside class="asideLeft"></aside>
   </header>
   
   <aside class="asideLeftIcons">
@@ -223,7 +257,7 @@
 	  </nav>
   </aside>
   
-  <div class="divDarkRectangle">
+  <div>
   <table width="100%" cellpadding="10">
   <tbody>
   <tr>
@@ -232,26 +266,26 @@
   <table width="100%" border="1" cellpadding="15" class="tableEnterCandidateDetails">
   <tbody>
     <tr>
-      <td width="100%"><input type="text" name="d1" value="<?php echo $raw[1];?>" class="textInputEnterCandidateDetails" placeholder="NIC No"></td>
+      <td width="100%"><input type="text" style="color:#A901DB" name="d1" value="<?php echo $raw[1];?>" class="textInputEnterCandidateDetails" placeholder="NIC No"></td>
       <td width="0%" rowspan="9">&nbsp;</td>
     </tr>
     <tr>
-      <td><input type="text" name="d2" value="<?php echo $raw[2];?>" class="textInputEnterCandidateDetails" placeholder="First Name"></td>
+      <td><input type="text" style="color:#A901DB" name="d2" value="<?php echo $raw[2];?>" class="textInputEnterCandidateDetails" placeholder="First Name"></td>
       </tr>
     <tr>
-      <td><input type="text" name="d3" value="<?php echo $raw[3];?>" class="textInputEnterCandidateDetails" placeholder="Last Name"></td>
+      <td><input type="text" style="color:#A901DB" name="d3" value="<?php echo $raw[3];?>" class="textInputEnterCandidateDetails" placeholder="Last Name"></td>
       </tr>
     <tr>
-      <td style="color: #BEA7AA">Date of Birth <input type="date" name="d4" value="<?php echo $raw[4];?>" class="dateInputEnterCandidateDetails" placeholder="Date of Birth"></td>
+      <td style="color: #BEA7AA">Date of Birth <input type="date" style="color:#A901DB" name="d4" value="<?php echo $raw[4];?>" class="dateInputEnterCandidateDetails" placeholder="Date of Birth"></td>
       </tr>
     <tr>
-      <td><input type="email" name="d5" value="<?php echo $raw[5];?>" class="emailInputEnterCandidateDetails" placeholder="e mail" ></td>
+      <td><input type="email" style="color:#A901DB" name="d5" value="<?php echo $raw[5];?>" class="emailInputEnterCandidateDetails" placeholder="e mail" ></td>
       </tr>
     <tr>
-      <td><input type="number" name="d6" value="<?php echo $raw[6];?>" class="numberInputEnterCandidateDetails" placeholder="Contact No"></td>
+      <td><input type="number" style="color:#A901DB" name="d6" value="<?php echo $raw[6];?>" class="numberInputEnterCandidateDetails" placeholder="Contact No"></td>
       </tr>
     <tr>
-      <td><input type="text" name="d7" value="<?php echo $raw[7];?>" class="textInputEnterCandidateDetails" placeholder="University"></td>
+      <td><input type="text" style="color:#A901DB" name="d7" value="<?php echo $raw[7];?>" class="textInputEnterCandidateDetails" placeholder="University"></td>
       </tr>
     <tr>
       <td>

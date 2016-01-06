@@ -1,6 +1,6 @@
 <?php
 	
-	$thresholdPeriod = 356;
+	$thresholdPeriod = 365;
 	$user='root';
 	$pass='';
 	$db='mysql:host=localhost;dbname=recruit';

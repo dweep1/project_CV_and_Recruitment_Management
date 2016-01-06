@@ -86,6 +86,13 @@
 }
 </style>
 
+<?php
+		$rSessionID="";
+		if(isset($_GET["rsid"])){
+				$rSessionID=$_GET["rsid"];
+		}
+?>
+
 <!--javascript for the table-->
 <script type="text/javascript">
 
@@ -106,6 +113,21 @@
 		};*/	
     });
 	
+jQuery(function(){
+    $( "#status" ).change(function() {
+		$.post("changeSessionStatus.php",
+		    {
+				sessionStatusID:$('#status').val(),
+				RSID:"<?php echo $rSessionID; ?>"				
+			},
+			function(data)
+			{
+				//alert(interviewname);
+			}
+		);
+	});
+});
+
 </script>
 
 <?php require_once("Sql.php");
@@ -136,11 +158,12 @@
 <div>
   <header>
     <aside class="asideRight">
-		<input type="search" class="searchbox"><img src="images/searchIcon.png" width="15" height="15" alt=""/>
-      
-		<a href="index.php" class="navHome"> Home</a>
-		<a href="help.php" class="navHelp">Help </a></aside>
-    
+      <form action="SearchInterface.php" method="get">
+        <input name="Search" type="search" class="searchbox" ><img src="images/searchIcon.png" width="15" height="15" alt=""/>
+        <a href="index.php" class="navHome"> Home</a>
+        <a href="help.php" class="navHelp">Help </a>
+      </form>
+    </aside>
     <aside class="asideLeft"></aside> 
   </header>
   
@@ -230,7 +253,7 @@
 
 <div class="divSessionDetails">
   <a href="uploadCVs.php?id=<?php echo $rSessionID?>&rname=<?php echo $rName?>&rjob=<?php echo $rJob?>&rdate=<?php echo $rDate?>&rstatus=<?php echo $rStatus?>"><input type="button" id="addCVButton" value="Upload CVs"></a>
-  <a href="interview.html"><input type="button" id="interviewButton" value="Interview"></a>
+  <a href="interviews.php?rsid=<?php echo $rSessionID?>&rname=<?php echo $rName?>&rjob=<?php echo $rJob?>&rdate=<?php echo $rDate?>&rstatus=<?php echo $rStatus?>"><input type="button" id="interviewButton" value="Interview"></a>
 </div>
   
   <table width="84%" height="107" border="1" align="center" class="sortable" id="tableCVDetails">

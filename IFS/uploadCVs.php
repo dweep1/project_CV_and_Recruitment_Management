@@ -134,11 +134,12 @@ if(isset($_GET["rstatus"])){
 <div>
   <header>
     <aside class="asideRight">
-		<input type="search" class="searchbox"><img src="images/searchIcon.png" width="15" height="15" alt=""/>
-      
-		<a href="index.php" class="navHome"> Home</a>
-		<a href="help.php" class="navHelp">Help </a></aside>
-    
+      <form action="SearchInterface.php" method="get">
+        <input name="Search" type="search" class="searchbox" ><img src="images/searchIcon.png" width="15" height="15" alt=""/>
+        <a href="index.php" class="navHome"> Home</a>
+        <a href="help.php" class="navHelp">Help </a>
+      </form>
+    </aside>
     <aside class="asideLeft"></aside> 
   </header>
   
@@ -153,6 +154,7 @@ if(isset($_GET["rstatus"])){
   <button id="uploadCVAddCVButton" value="Add CVs">
 	  <span>Add CVs</span>
 	  <input id="customFile" onchange="fileUploadFunction()" value="Add CVs" style="position:absolute;z-index:2;top:5;left:0;opacity:0;background-color:transparent;color:transparent;" accept="application/pdf,.docx" data-filename-placement="inside" type="file" class="file_input" name="fileToUpload[]" multiple>
+	  <!--<input id="customFile" onchange="fileUploadFunction()" value="Add CVs" style="position:absolute;z-index:2;top:5;left:0;opacity:0;background-color:transparent;color:transparent;" accept="application/pdf,.docx" data-filename-placement="inside" type="file" class="file_input" name="fileToUpload[]" multiple>-->
   </button>	  
   <button id="uploadCVUploadCVButton" value="Upload CVs">
 	  <span>Upload CVs</span>
@@ -173,7 +175,7 @@ if(isset($_GET["rstatus"])){
 		</tr>
 	  </tbody>
 	</table> -->
-<progress id="progressBar" value="0" max="100" style="width:400px;"></progress>
+<!--<progress id="progressBar" value="0" max="100" style="width:400px;"></progress>-->
   <h3 id="status"></h3>
   <p id="loaded_n_total"></p>
 	

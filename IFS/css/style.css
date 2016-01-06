@@ -260,3 +260,107 @@ body div {
 		font-size: 1.2em;
 
 	}
+	
+	.divDarkRectangle {
+	background-color: #DBCCCE;
+	display: inline-block;
+	width: 82%;
+	margin-left: 8%;
+	margin-right: 8%;
+	padding-top: 1%;
+	padding-right: 1%;
+	padding-bottom: 1%;
+	padding-left: 1%;
+	margin-bottom: 2%;
+}
+input[type=checkbox] {
+	margin-right: 2%;
+}
+.progressBar {
+	margin-left: 2%;
+}
+.headingsInADiv {
+	font-weight: 600;
+	font-size: 1.2em;
+	margin-bottom: 10%;
+	padding-bottom: 5%;
+}
+#tableCommon {
+	margin-top: 3%;
+	font-family: "OpenSans Regular";
+	background-color: #FFFFFF;
+	border-collapse: collapse;
+	border-color: #EBBEF5;
+	margin-bottom: 3%;
+	}
+.usersAdminhome {
+	color: #000000;
+	padding-left: 105px;
+	padding-top: 22px;
+	padding-bottom: 35px;
+	background-image: url(../images/recruitmentSession.png);
+	background-repeat: no-repeat;
+	margin-bottom: 5px;
+	display: list-item;
+	margin-top: 15px;
+	margin-left: 30px;
+	-webkit-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+	}
+.backupAdminHome {
+	color: #000000;
+	padding-left: 105px;
+	padding-top: 22px;
+	padding-bottom: 35px;
+	background-image: url(../images/backup.png);
+	background-repeat: no-repeat;
+	margin-bottom: 5px;
+	display: list-item;
+	margin-top: 5px;
+	-webkit-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+	}
+.searchRecordsAdminHome {
+	color: #000000;
+	padding-left: 105px;
+	padding-top: 22px;
+	padding-bottom: 35px;
+	background-image: url(../images/searchRecords.png);
+	background-repeat: no-repeat;
+	margin-bottom: 5px;
+	display: list-item;
+	margin-top: 5px;
+	-webkit-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+	}
+.deleteRecordsAdminHome {
+	color: #000000;
+	padding-left: 105px;
+	padding-top: 22px;
+	padding-bottom: 35px;
+	background-image: url(../images/trash.png);
+	background-repeat: no-repeat;
+	margin-bottom: 5px;
+	display: list-item;
+	margin-top: 5px;
+	margin-left: 30px;
+	-webkit-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+	}
+.usersAdminhome:hover {
+	margin-left: 40px;
+}
+.backupAdminHome:hover {
+	margin-left: 10px;
+}
+.searchRecordsAdminHome:hover {
+	margin-left: 10px;
+}
+.deleteRecordsAdminHome:hover {
+	margin-left: 40px;
+}
+

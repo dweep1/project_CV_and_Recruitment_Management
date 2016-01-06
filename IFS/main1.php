@@ -3,13 +3,17 @@
 <body>
 <?php
 require_once("RecruitmentSession.php");
+require_once("jobPosition.php");
 
-		$jb=""; $name="";
+		$jb=""; $name=""; $newJob="";
         if(isset($_POST['selectPost'])){
     		$jb=$_POST['selectPost'];
   		}
 	    if(isset($_POST['sessionName'])){
     		$name=$_POST['sessionName'];
+  		}
+		if(isset($_POST['newJob'])){
+    		$newJob=$_POST['newJob'];
   		}
 		
 		/*if(empty($_POST['selectPost']) && empty($_POST['sessionName'])){
@@ -31,7 +35,12 @@ require_once("RecruitmentSession.php");
 			$rsObject=new RecruitmentSession($name,$jb);
 			$sessionID = $rsObject->getRSID();
 			echo "<meta http-equiv=\"refresh\" content=\"0;url=UploadCVs.php?id=".$sessionID.">";
-		}*/			
+		}*/	
+		$jobPos = null;
+		if($newJob!=""){
+			$jobPos = new jobPosition($newJob);
+			$jb = $jobPos->getjpID();
+		}	
 		
 		$sessionID="";
 		if($jb!="" && $name!=""){
@@ -41,7 +50,7 @@ require_once("RecruitmentSession.php");
 			$rJob = $rsObject->getJobPositionName();
 			$rDate = $rsObject->getDateCreated();
 			$rStatus = $rsObject->getStatus();
-		}
+		}else 
 		
 //header("Location: UploadCVs.php?id=".$sessionID."");
 //die();
