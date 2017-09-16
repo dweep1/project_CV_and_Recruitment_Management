@@ -48,7 +48,7 @@
   try {
     $dbh= new PDO($db,$user,$pass);
 
-    $sql = $dbh->prepare("SELECT recruitmentsession.RSID, name, dateCreated, jbName, status FROM RecruitmentSession,jobpositon,sessionstatus where jobPositionID=jbID and recruitmentsession.sessionStatusID=sessionstatus.sessionStatusID");
+    $sql = $dbh->prepare("SELECT recruitmentsession.RSID, name, dateCreated, jbName, status FROM recruitmentsession,jobpositon,sessionstatus where jobPositionID=jbID and recruitmentsession.sessionStatusID=sessionstatus.sessionStatusID");
 	$loadStatus = $dbh->prepare("SELECT sessionStatusID,status FROM sessionStatus");
 	
     if($sql->execute()) {
